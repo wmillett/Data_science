@@ -1,0 +1,38 @@
+DC = docker compose
+
+all: up
+
+status:
+	$(DC) ps
+
+up:
+	$(DC) up -d --build
+
+down:
+	$(DC) down
+
+fclean:
+	$(DC) down --rmi all -v --remove-orphans
+	$(DC) rm -f
+#Yes | $(DC) system prune -a --volumes
+
+re: fclean all
+
+run: all
+	docker exec -it db_container bash
+
+remove:
+	docker container prune
+
+
+psql:
+	$(DC) up -d --build
+	docker exec -it db_container psql -U wmillett -d piscineds
+
+import:
+	python3 import_csv.py
+
+items:
+	python3 items.py
+
+.PHONY: all up down fclean psql pgadmin re status import run remove items
