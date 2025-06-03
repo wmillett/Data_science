@@ -22,7 +22,7 @@ run: all
 	docker exec -it db_container bash
 
 remove:
-	docker container prune
+	docker container prune -f
 
 
 psql:
@@ -30,9 +30,9 @@ psql:
 	docker exec -it db_container psql -U wmillett -d piscineds
 
 import:
-	python3 import_csv.py
+	python3 automatic_table.py
 
 items:
-	python3 items.py
+	python3 items_table.py
 
 .PHONY: all up down fclean psql pgadmin re status import run remove items

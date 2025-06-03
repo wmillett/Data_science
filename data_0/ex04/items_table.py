@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import psycopg2
 
 FOLDER = 'item'
-TEMPLATE_FILE = 'items.sql'
+TEMPLATE_FILE = 'items_table.sql'
 
 # Load environment variables from .env file
 load_dotenv()

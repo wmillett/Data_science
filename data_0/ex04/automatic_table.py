@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import psycopg2
 
 FOLDER = 'customer'
-TEMPLATE_FILE = 'import.sql'
+TEMPLATE_FILE = 'automatic_table.sql'
 
 # Load environment variables from .env file
 load_dotenv()

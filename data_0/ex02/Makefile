@@ -26,9 +26,9 @@ psql:
 	$(DC) up -d --build
 	docker exec -it db_container psql -U wmillett -d piscineds
 
-import:
-	@docker exec -i db_container bash -c 'cat > /docker-entrypoint-initdb.d/import.sql' < import.sql
-	@docker exec db_container psql -U wmillett -d piscineds -f /docker-entrypoint-initdb.d/import.sql
-	@docker exec db_container rm /docker-entrypoint-initdb.d/import.sql
-	@echo "Data successfully imported to table data_2022_oct"
-.PHONY: all up down fclean psql pgadmin re status import run
+table:
+	@docker exec -i db_container bash -c 'cat > /docker-entrypoint-initdb.d/table.sql' < table.sql
+	@docker exec db_container psql -U wmillett -d piscineds -f /docker-entrypoint-initdb.d/table.sql
+	@docker exec db_container rm /docker-entrypoint-initdb.d/table.sql
+	@echo "Data successfully tableed to table data_2022_oct"
+.PHONY: all up down fclean psql pgadmin re status table run
